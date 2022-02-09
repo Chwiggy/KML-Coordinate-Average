@@ -1,7 +1,7 @@
 from sys import argv
 from bs4 import *
 from statistics import mean
-from math import cos
+from math import cos, radians
 
 script, filename = argv
 
@@ -39,7 +39,7 @@ def latitude_weighting(all_long, all_lat):
     weighted_long_arr = []
     i = 0
     for x in all_long:
-        weighted_long = all_long[i] * abs(cos(all_lat[i]))
+        weighted_long = all_long[i] * abs(cos(radians(all_lat[i])))
         weighted_long_arr.append(weighted_long)
         i += 1
     return weighted_long_arr
