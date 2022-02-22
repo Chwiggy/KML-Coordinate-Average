@@ -51,14 +51,17 @@ def weighted_mean_coordinates(all_long, all_lat):
     final_coordinates = f"The weighted mean coordinates are:{lat_mean}, {long_mean}"
     return final_coordinates
 
-#open file and feed to parser
-xml = open(filename)
-soup = BeautifulSoup(xml, "xml")
-xml.close()
+def main(filename):
+    #open file and feed to parser
+    xml = open(filename)
+    soup = BeautifulSoup(xml, "xml")
+    xml.close()
+    #run all the magic
+    all_long, all_lat = get_coordinates(soup)
+    mean_point = mean_coordinates(all_long, all_lat)
+    print (mean_point)
+    weighted_mean_point = weighted_mean_coordinates(all_long, all_lat)
+    print(weighted_mean_point)
 
-#run all the magic
-all_long, all_lat = get_coordinates(soup)
-mean_point = mean_coordinates(all_long, all_lat)
-print (mean_point)
-weighted_mean_point = weighted_mean_coordinates(all_long, all_lat)
-print(weighted_mean_point)
+if __name__ == '__main__':
+    main(filename)
